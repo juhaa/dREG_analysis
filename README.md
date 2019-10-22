@@ -1,5 +1,4 @@
 # dREG analysis scripts
-------------
 
 This repository contains necessary packages, scripts, and a conda environment required for dREG analysis.
 
@@ -9,7 +8,6 @@ R packages included in this repo:
 * [bigWig](https://github.com/andrelmartins/bigWig/tree/79c653fb986f48ffba59cc65e79995a0cadc352a/bigWig)
 
 ## Installation
-------------
 
 ```bash
 git clone https://github.com/juhaa/dREG_analysis.git
@@ -26,7 +24,6 @@ conda install -c bioconda homer
 ```
 
 ## Usage
-------------
 
 ### Step 1: Creating bigWigs
 
@@ -45,5 +42,4 @@ sbatch scripts/singlejob.sbatch
 ```
 
 ## References
-------------
 [Danko, C. G., Hyland, S. L., Core, L. J., Martins, A. L., Waters, C. T., Lee, H. W., ... & Siepel, A. (2015). Identification of active transcriptional regulatory elements from GRO-seq data. Nature methods, 12(5), 433-438.](https://www.nature.com/articles/nmeth.3329)
