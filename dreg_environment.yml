@@ -1,0 +1,19 @@
+name: dreg
+channels:
+  - defaults
+  - bioconda
+  - r
+  - conda-forge
+dependencies:
+  - openssl
+  - libopenblas
+  - mysql
+  - bedtools
+  - r-boot
+  - r-data.table
+  - r-e1071
+  - r-mvtnorm
+  - r-randomforest
+  - r-rmutil
+  - r-rphast
+  - r-snowfall
