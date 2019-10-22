@@ -23,6 +23,10 @@ Additionally, [HOMER](http://homer.ucsd.edu/homer/index.html) is required for cr
 conda install -c bioconda homer
 ```
 
+### Notes
+* Tested on Linux
+* OS X seems to have problems when installing bigWig package, possibly related to the Clang compiler
+
 ## Usage
 
 ### Step 1: Creating bigWigs
