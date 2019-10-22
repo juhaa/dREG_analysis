@@ -1,0 +1,7 @@
+language: r
+sudo: required
+before_install:
+ - cd bigWig
+
+r_binary_packages:
+ - testthat
