@@ -9,8 +9,11 @@ R packages included in this repo:
 
 ## Installation
 
+A conda environment is provided for installing most of the dependencies. More information about conda: <https://docs.conda.io/en/latest/>
+
 ```bash
 git clone https://github.com/juhaa/dREG_analysis.git
+cd dREG_analysis/
 conda env create -f dreg_environment.yml
 conda activate dreg
 R CMD INSTALL R_packages/bigWig/
