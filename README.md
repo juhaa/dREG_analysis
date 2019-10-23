@@ -5,7 +5,7 @@ This repository contains necessary packages, scripts, and a conda environment re
 R packages included in this repo:
 
 * [dREG version 1.0.5](https://github.com/Danko-Lab/dREG/tree/6571b7df142efeb7d8beb894b487b4b1cb829d17/dREG)
-* [bigWig](https://github.com/andrelmartins/bigWig/tree/79c653fb986f48ffba59cc65e79995a0cadc352a/bigWig)
+* [bigWig](https://github.com/andrelmartins/bigWig/tree/d25a16e4c853c8fe3a59151820c9f1ace924cbd6/bigWig)
 
 ## Installation
 
