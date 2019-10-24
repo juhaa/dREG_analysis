@@ -18,8 +18,11 @@ while [ "$1" != "" ]; do
     -m | --merge_th ) shift
                       merge_th=$1
                       ;;
-    -i | --input )   shift
+    -i | --input )    shift
                       input=$1
+                      ;;
+    -o | --output )   shift
+                      output=$1
                       ;;
     -h | --help )     usage
                       exit
@@ -35,25 +38,30 @@ if [ ! -e "$input" ]; then
   exit 1
 fi
 
+echo "Input: $input"
+echo "Output: $output"
+echo "Score threshold: $score_th"
+echo "Merge threshold: $merge_th"
+
 ## Create bed files larger than the specified threshold.
-echo "Converting $input"
+echo "Converting bedGraph to bed"
 prefix=$(echo $input | sed 's/.bedGraph//')
 
 # Get peaks passing threshold.
-awk 'BEGIN{OFS="\t"} ($4 > '"$score_th"') {print $1, $2-50, $3+50, $4}' $input | sort -k1,1 -k2,2n > $prefix.threshold_pass.bed
+awk 'BEGIN{OFS="\t"} ($4 > '"$score_th"') {print $1, $2-50, $3+50, $4}' $input | sort -k1,1 -k2,2n > $prefix.threshold_pass.temp.bed
 
 # Merge.
-bedtools merge -i $prefix.threshold_pass.bed -d $merge_th > $prefix.threshold_pass.merge.bed
+bedtools merge -i $prefix.threshold_pass.temp.bed -d $merge_th > $prefix.threshold_pass.merge.temp.bed
 
 # Get max score in each peak.
-bedtools map -a $prefix.threshold_pass.merge.bed -b $prefix.threshold_pass.bed -c 4 -o max | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "enhancer_"NR, $4}' > $prefix.bed
+bedtools map -a $prefix.threshold_pass.merge.temp.bed -b $prefix.threshold_pass.temp.bed -c 4 -o max | awk 'BEGIN{OFS="\t"} {print $1, $2, $3, "enhancer_"NR, $4}' > $prefix.temp.bed
 
 # Duplicate found transcripts to + and - strand
-sed 's/$/\t-/' $input > minus
-sed 's/$/\t+/' $input > plus
-cat minus plus > $output
+sed 's/$/\t-/' $prefix.temp.bed > minus.temp.bed
+sed 's/$/\t+/' $prefix.temp.bed > plus.temp.bed
+cat minus.temp.bed plus.temp.bed > $output
 
 # Clean temporary files.  
-rm -f $prefix.threshold_pass.bed $prefix.threshold_pass.merge.bed minus plus $prefix.bed
+rm -f $prefix.threshold_pass.temp.bed $prefix.threshold_pass.merge.temp.bed minus.temp.bed plus.temp.bed $prefix.temp.bed
 
-echo -e "\nDone"
+echo -e "\nDone."
