@@ -7,6 +7,9 @@
 #SBATCH --ntasks=1
 #SBATCH -o dREG_slurm.out
 
+# Source .bashrc (for conda initialization)
+source /home/users/${USER}/.bashrc
+
 # Active conda environment for dREG
 conda activate dreg
 
