@@ -1,9 +1,9 @@
 #!/bin/bash
 #SBATCH -J dREG
 #SBATCH --nodes=1
-#SBATCH --cpus-per-task=40
-#SBATCH --time=1-00:00:00
-#SBATCH --mem=376G
+#SBATCH --cpus-per-task=20
+#SBATCH --time=1-12:00:00
+#SBATCH --mem=100G
 #SBATCH --ntasks=1
 #SBATCH -o dREG_slurm.out
 
@@ -14,7 +14,7 @@ source /home/users/${USER}/.bashrc
 conda activate dreg
 
 # Set parameters for the run
-THREADS=40 # Should be the same as "--cpus-per-task" value in slurm params
+THREADS=20 # Best if the same as "--cpus-per-task" value in slurm params
 SCORE_TH=0.8 # Score threshold for passing sequences
 MERGE_TH=500 # Merge threshold for proximal sequences
 DREG_DIR=$HOME/dREG_analysis
